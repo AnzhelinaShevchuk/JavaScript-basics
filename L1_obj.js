@@ -1,18 +1,25 @@
-const numberOfFilms = +prompt("How many films have you already watched?", "");
+let numberOfFilms;
 
-//console.log(numberOfFilms);
+function start() {
+	numberOfFilms = +prompt("How many films have you already watched?", "");
+  
+  while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+  numberOfFilms = +prompt("How many films have you already watched?", "");
+  }
+}
+
+start();
 
 const personalMovieDB = {
   count: numberOfFilms,
   movies: {},
   actors: {},
   genders: [],
-  privet: false,
+  privat: false,
 }
 
-//console.log(personalMovieDB.count);
-
-for (let i = 0; i < 2; i++) {
+function rememberMyFilms() {
+	for (let i = 0; i < 2; i++) {
   const a = prompt('one of the last movies you watched?', ''),
         b = prompt('how much would you rate it?', '');
 
@@ -24,33 +31,11 @@ for (let i = 0; i < 2; i++) {
       i--;
   }
 } 
+}
 
-/* let i = 0;
-do {
-const a = prompt('one of the last movies you watched?', ''),
-    b = prompt('how much would you rate it?', '');
-if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-      personalMovieDB.movies[a] = b;
-      console.log('done');
-      i++;
-  } else {
-      console.log('error');
-  }
-} while(i < 2) */
+rememberMyFilms();
 
-/* let i = 0;
-while(i < 2) {
-const a = prompt('one of the last movies you watched?', ''),
-    b = prompt('how much would you rate it?', '');
-if (a != null && b != null && a != '' && b != '' && a.length < 50) {
-      personalMovieDB.movies[a] = b;
-      console.log('done');
-      i++;
-  } else {
-      console.log('error');
-  }
-} */
-
+function detectPersonaLevel() {
 if (personalMovieDB.count < 10) {
   console.log("Quite a few movies watched");
 } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
@@ -60,5 +45,25 @@ if (personalMovieDB.count < 10) {
 } else {
   console.log("error");
 }
+}
 
+detectPersonaLevel();
+
+
+function shovMyDB (hidden) {
+	if (!hidden) {
+  console.log(personalMovieDB);
+  }
+}
+
+shovMyDB(personalMovieDB.privat);
+
+function writeYourGenres() {
+for (let i = 1; i <= 3; i++) {
+       
+      personalMovieDB.genders[i-1] = prompt(`Your favorite genders is number ${i}`, '');
+      
+} 
+}
+writeYourGenres();
 console.log(personalMovieDB);
