@@ -60,5 +60,5 @@ const personalMovieDB = {
       personalMovieDB.privat = false
     }
   }
-};
+}; 
 
